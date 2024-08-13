@@ -36,7 +36,7 @@ if __name__ == "__main__":
 
     model_dir = "/opt/wangwei/asr_funasr/funasr_models/iic/speech_paraformer-large-vad-punc_asr_nat-zh-cn-16k-common-vocab8404-pytorch"
     # model_ckpt = '/opt/wangwei/asr_funasr/funasr_models/iic/speech_paraformer-large-vad-punc_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt'
-    model_ckpt = '/opt/wangwei/asr_finetune/egs3/outputs/model.pt.ep3'
+    model_ckpt = '/opt/wangwei/asr_finetune/egs2/outputs/model.pt.ep3'
     model = AutoModel(model=model_dir,
                       init_param=model_ckpt,
                       batch_size=20,
@@ -44,8 +44,8 @@ if __name__ == "__main__":
                       )
     
     mers = []
-    dir = "/opt/wangwei/audio/dataset1"
-    audio_format = 'mp3'
+    dir = "/opt/wangwei/audio/audio/test/2/TR"
+    audio_format = 'wav'
     for utt in sorted(os.listdir(dir)):
         if audio_format not in utt: continue 
         utt = utt.split(".")[0]
@@ -69,6 +69,7 @@ if __name__ == "__main__":
         asr_text = ''
         for result in results:
             asr_text += result['text']
+        print(asr_text)
         mer = compute_mer_text(audio_trans, asr_text, show=False)
         mers.append(mer)
         print(utt)

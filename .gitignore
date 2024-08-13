@@ -1,0 +1,8 @@
+audio.zip
+train.py
+dataset
+egs*
+outputs*
+sslocal.log
+__pycache__
+
